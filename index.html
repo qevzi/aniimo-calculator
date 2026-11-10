@@ -153,15 +153,6 @@
             <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-sky-300"></i>
             <span>Zerar Estoque</span>
           </button>
-          <div class="flex items-center gap-1 bg-[#323952]/75 backdrop-blur-md p-1 rounded-full border border-white/45 shadow-md">
-            <span class="text-[11px] font-bold text-white/80 pl-2.5 pr-1">Meta:</span>
-            <button id="tab-target-dense" type="button" class="w-9 h-8 rounded-full transition flex items-center justify-center bg-white shadow-sm ring-2 ring-amber-400" title="Madeira Densificada (Nv. 4)">
-              <img src="https://static.metaforge.app/aniimo/icons/Res/XGUI/Texture/Icon/Item_icon/ui_item_4010172.webp" alt="Madeira Densificada" class="w-6 h-6 object-contain game-item-png" />
-            </button>
-            <button id="tab-target-beam" type="button" class="w-9 h-8 rounded-full transition flex items-center justify-center opacity-60 hover:opacity-100 hover:bg-white/15" title="Vigas Laminadas (Nv. 3)">
-              <img src="https://static.metaforge.app/aniimo/icons/Res/XGUI/Texture/Icon/Item_icon/ui_item_4010171.webp" alt="Vigas Laminadas" class="w-6 h-6 object-contain game-item-png" />
-            </button>
-          </div>
         </div>
       </div>
       <div class="mt-2.5 relative flex items-center">
@@ -855,8 +846,6 @@ const CROP_ICONS={"apple": "data:image/webp;base64,UklGRs4UAABXRUJQVlA4WAoAAAAQA
     const targetBadgeLevel = document.getElementById('rv-target-badge');
     const targetItemTitle = document.getElementById('target-item-title');
     const targetSubtitleRv = document.getElementById('target-subtitle-rv');
-    const tabTargetDense = document.getElementById('tab-target-dense');
-    const tabTargetBeam = document.getElementById('tab-target-beam');
     const btnStepMinus = document.getElementById('btn-step-minus');
     const btnStepPlus = document.getElementById('btn-step-plus');
     const presetBtns = document.querySelectorAll('.btn-preset');
@@ -1040,15 +1029,11 @@ const CROP_ICONS={"apple": "data:image/webp;base64,UklGRs4UAABXRUJQVlA4WAoAAAAQA
       if (!MODES.includes(mode)) mode='dense';
       currentMode=mode;
       if (mode === 'dense') {
-        tabTargetDense.className = 'w-9 h-8 rounded-full transition flex items-center justify-center bg-white shadow-sm ring-2 ring-amber-400';
-        tabTargetBeam.className = 'w-9 h-8 rounded-full transition flex items-center justify-center opacity-60 hover:opacity-100 hover:bg-white/15';
         targetItemTitle.textContent = 'Madeira Densificada';
         if(targetHeroIcon) targetHeroIcon.src = METAFORGE_OFFICIAL_ICONS['densified-timber-component'];
         cardContainerDense.classList.add('ring-2', 'ring-amber-400');
         cardContainerBeam.classList.remove('ring-2', 'ring-purple-400');
       } else {
-        tabTargetBeam.className = 'w-9 h-8 rounded-full transition flex items-center justify-center bg-white shadow-sm ring-2 ring-purple-400';
-        tabTargetDense.className = 'w-9 h-8 rounded-full transition flex items-center justify-center opacity-60 hover:opacity-100 hover:bg-white/15';
         targetItemTitle.textContent = 'Vigas Laminadas';
         if(targetHeroIcon) targetHeroIcon.src = METAFORGE_OFFICIAL_ICONS['laminated-beams'];
         if(mode==='beam') cardContainerBeam.classList.add('ring-2', 'ring-purple-400'); else cardContainerBeam.classList.remove('ring-2','ring-purple-400');
@@ -1081,9 +1066,6 @@ const CROP_ICONS={"apple": "data:image/webp;base64,UklGRs4UAABXRUJQVlA4WAoAAAAQA
       source.hidden=!(rv===20||rv===21);
     }
     rvSelect.addEventListener('change',applyRV);
-    tabTargetDense.addEventListener('click', () => chooseMode('dense'));
-    tabTargetBeam.addEventListener('click', () => chooseMode('beam'));
-    function chooseMode(mode){ const data=ANIIMAX_RV_DATA[+rvSelect.value]; targetInput.value=data.type===mode?data.nextTarget:1; targetBadgeLevel.textContent=data.type===mode?'Requisito do próximo RV':'Meta personalizada';targetSubtitleRv.textContent=data.type===mode?'Requisito de madeira do próximo RV:':'Quantidade personalizada (fora do requisito do RV):';setTargetMode(mode); }
 
     btnStepMinus.addEventListener('click', () => { targetInput.value = Math.max(1, (parseInt(targetInput.value)||0)-10); recalculate(); });
     btnStepPlus.addEventListener('click', () => { targetInput.value = (parseInt(targetInput.value)||0)+10; recalculate(); });
@@ -1147,7 +1129,7 @@ const CROP_ICONS={"apple": "data:image/webp;base64,UklGRs4UAABXRUJQVlA4WAoAAAAQA
       document.getElementById('eco-level').value=data.eco||0;document.getElementById('environment').value=data.environment||'';document.getElementById('extra-time').value=0;
       allocations=data.allocations||{};selectedCrop=data.selectedCrop||Object.keys(allocations).find(k=>allocations[k]>0)||'';renderCrops(false);
       targetBadgeLevel.textContent='Meta salva · RV '+rvSelect.value;
-      setTargetMode(data.mode || 'dense');
+      setTargetMode(ANIIMAX_RV_DATA[+rvSelect.value].type);
     };
 
     function maxGroves(){const rv=+rvSelect.value;return rv===1?0:Math.min(20,rv+1);}
