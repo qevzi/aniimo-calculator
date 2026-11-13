@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#a6a9e1">
-<title>Aniimo · Gabarito de 70.000 · Noite Mágica</title>
+<title>Aniimo · Noite Mágica</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Space+Grotesk:wght@700&amp;display=swap">
 <style>:root{color-scheme:light;--ink:#242b49;--muted:#535d79;--accent:#5141a0;--edge:#fff;--shadow:0 12px 28px #34336a18}
 *{box-sizing:border-box}body{margin:0;color:var(--ink);font:600 15px/1.5 "Plus Jakarta Sans",system-ui,sans-serif;background:radial-gradient(ellipse at 85% 4%,#b9adeb,transparent 40%),radial-gradient(ellipse at 6% 35%,#c9cafa,transparent 47%),linear-gradient(160deg,#929fda,#d6dcf5 65%,#dce6fa);min-height:100vh}button{font:inherit}a{color:var(--accent)}:focus-visible{outline:3px solid #47339e;outline-offset:4px}[hidden]{display:none!important}
@@ -34,6 +34,7 @@ dialog{width:min(88vw,420px);border:1px solid white;border-radius:23px;backgroun
 @media print{.swap-box{display:none}}
 .swap-trigger,.undo-swap{border:1px solid #d6c9f2;border-radius:9px;background:#f2ecfd;color:#49378d;font-weight:800;font-size:12px;padding:6px 10px;cursor:pointer}.swap-trigger{grid-column:1/-1;justify-self:end}.swap-trigger:hover,.undo-swap:hover{background:#e5d9fb}.undo-swap{margin:0 0 10px}.swap-dialog{width:min(92vw,515px);max-height:85vh;overflow:auto;text-align:left}.swap-dialog .swap-card{margin:8px 0}.swap-dialog .swap-card p{margin:7px 0}.swap-dialog .swap-piece img{width:36px;height:36px;aspect-ratio:auto;border-radius:7px}.swap-dialog form{margin-top:12px}
 @media print{.swap-trigger,.undo-swap{display:none}}
+.hero .hero-goal{color:#ffe2a6;font-weight:800;margin-bottom:8px}@media print{.hero .hero-goal{color:var(--ink)}}
 </style>
 </head>
 <body>
@@ -45,8 +46,9 @@ dialog{width:min(88vw,420px);border:1px solid white;border-radius:23px;backgroun
 <button type="button" data-language="en-US" lang="en-US" aria-pressed="false">ENG-US <small>English</small></button>
 </div></details><a href="https://qevzi.github.io/aniimo-calculator/">Calculadora de madeira ↗</a></div></div>
   <div class="hero">
-    <div class="eyebrow">Noite Mágica · Reunião Noturna</div>
-    <h1><span>70.000</span> de habitabilidade</h1>
+    <div class="eyebrow">Aniimo · Reunião Noturna</div>
+    <h1>Noite Mágica</h1>
+    <p class="hero-goal">Meta de 70.000 de habitabilidade</p>
     <p>Escolha um plano para o estacionamento do RV e clique na imagem de um móvel para reconhecê-lo no jogo.</p>
   </div>
 </header>
@@ -106,7 +108,7 @@ tabs.forEach((tab, index) => tab.addEventListener('keydown', event => {
   tabs[next].focus();
 }));
 const viewer = document.querySelector('#item-preview');
-const translations = {"Calculadora de madeira ↗": "Wood calculator ↗", "Noite Mágica · Reunião Noturna": "Magical Wonder Night · Nighttime Gathering", " de habitabilidade": " Habitability", "Escolha um plano para o estacionamento do RV e clique na imagem de um móvel para reconhecê-lo no jogo.": "Choose a layout for your RV Park and select a furniture icon to see it up close.", "Carga reduzida": "Lower Load", "Menos decorações": "Fewer Decorations", "Menos jujubas": "Fewer Wonder Jellybeans", "Prioriza carga livre": "Leaves more load capacity available", "Prioriza espaços livres": "Leaves more decoration slots available", "Prioriza menor custo em jujubas": "Prioritizes a lower Wonder Jellybean cost", "Habitabilidade (evento)": "Event Habitability", "Decorações": "Decorations", "Carga do RV": "RV Load", "Móveis para colocar": "Furniture to Place", "Habit. normal /un.": "Base habitability per item", "Habit. 3× /un.": "3× habitability per item", "Habit. total (3×)": "Total habitability (3×)", "Carga total": "Total load", "Fontes das imagens e dos nomes": "Image and item name sources", "Ícones do jogo via ": "Game icons via ", ". IDs e nomes em inglês conferidos no ": ". Item IDs and English names checked against ", " e no ": " and ", ". Captura do evento via ": ". Event screenshot via ", "Fechar": "Close", "Bônus de 3× nos móveis de Halloween": "3× bonus on Halloween furniture"};
+const translations = {"Calculadora de madeira ↗": "Wood calculator ↗", "Aniimo · Reunião Noturna": "Aniimo · Nighttime Gathering", " de habitabilidade": " Habitability", "Escolha um plano para o estacionamento do RV e clique na imagem de um móvel para reconhecê-lo no jogo.": "Choose a layout for your RV Park and select a furniture icon to see it up close.", "Carga reduzida": "Lower Load", "Menos decorações": "Fewer Decorations", "Menos jujubas": "Fewer Wonder Jellybeans", "Prioriza carga livre": "Leaves more load capacity available", "Prioriza espaços livres": "Leaves more decoration slots available", "Prioriza menor custo em jujubas": "Prioritizes a lower Wonder Jellybean cost", "Habitabilidade (evento)": "Event Habitability", "Decorações": "Decorations", "Carga do RV": "RV Load", "Móveis para colocar": "Furniture to Place", "Habit. normal /un.": "Base habitability per item", "Habit. 3× /un.": "3× habitability per item", "Habit. total (3×)": "Total habitability (3×)", "Carga total": "Total load", "Fontes das imagens e dos nomes": "Image and item name sources", "Ícones do jogo via ": "Game icons via ", ". IDs e nomes em inglês conferidos no ": ". Item IDs and English names checked against ", " e no ": " and ", ". Captura do evento via ": ". Event screenshot via ", "Fechar": "Close", "Bônus de 3× nos móveis de Halloween": "3× bonus on Halloween furniture"};
 const localized = [];
 const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
   acceptNode(node) {
@@ -291,8 +293,9 @@ function setLanguage(language) {
   const english = language === 'en-US';
   const formatNumber = value => numberFormat.format(Number(value.replaceAll('.', '')));
   document.documentElement.lang = language;
-  document.title = english ? 'Aniimo · 70,000 Habitability Guide · Magical Wonder Night' : 'Aniimo · Gabarito de 70.000 · Noite Mágica';
-  document.querySelector('.hero h1 span').textContent = english ? '70,000' : '70.000';
+  document.title = english ? 'Aniimo · Magical Wonder Night' : 'Aniimo · Noite Mágica';
+  document.querySelector('.hero h1').textContent = english ? 'Magical Wonder Night' : 'Noite Mágica';
+  document.querySelector('.hero-goal').textContent = english ? '70,000 habitability target' : 'Meta de 70.000 de habitabilidade';
   document.querySelector('.tabs').setAttribute('aria-label', english ? 'Choose a layout' : 'Escolher gabarito');
   for (const [node, original] of localized) {
     const translated = translations[original] ?? original
