@@ -781,7 +781,7 @@ html[lang="ja-JP"] [data-mix]:not([data-mix="ja"]),html:not([lang="ja-JP"]) [dat
       <input id="mixed-code-value" type="text" readonly value="28AC4YF8" aria-label="RV Park layout code">
       <button type="button" id="mixed-code-copy"><span data-mix="pt">Copiar</span><span data-mix="en">Copy</span><span data-mix="ja">コピー</span></button>
     </div>
-    <p id="mixed-code-credit" class="mixed-code-requirement"></p>
+    <p id="mixed-code-credit" class="mixed-code-requirement" hidden></p>
     <button type="button" id="mixed-code-help" aria-haspopup="dialog" aria-controls="mixed-code-tutorial"><span aria-hidden="true">?</span> <span data-mix="pt">Como importar</span><span data-mix="en">How to import</span><span data-mix="ja">読み込み方法</span></button>
     <p id="mixed-code-status" role="status"></p>
   </div>
@@ -798,7 +798,7 @@ html[lang="ja-JP"] [data-mix]:not([data-mix="ja"]),html:not([lang="ja-JP"]) [dat
 <script>
 {
   const codes = {
-    NA: ['28AC4YF8',['Importe como Conjunto.','Import as a Set.','セットとして読み込んでください。'],'qevzi'],
+    NA: ['28AC4YF8',['Importe como Conjunto.','Import as a Set.','セットとして読み込んでください。']],
     EU: ['A28NNBMK',['Tipo não confirmado. Confira Conjuntos e Projetos.','Type unconfirmed. Check Sets and Blueprints.','形式未確認。「セット」と「設計図」を確認してください。'],'@JayJeopardyPer','https://www.youtube.com/@JayJeopardyPer'],
     APAC: ['X5VTRLYH',['Importe como Projeto (Blueprint).','Import as a Blueprint.','設計図として読み込んでください。'],'u/Real_Assumption_2204','https://www.reddit.com/user/Real_Assumption_2204/']
   };
@@ -812,10 +812,14 @@ html[lang="ja-JP"] [data-mix]:not([data-mix="ja"]),html:not([lang="ja-JP"]) [dat
     field.setAttribute('aria-label',['Código da decoração do RV','RV Park layout code','RVパークのレイアウトコード'][locale()]);
     document.querySelector('#mixed-code-type').textContent = types[locale()];
     const credit = document.querySelector('#mixed-code-credit');
-    const name = document.createElement(url ? 'a' : 'span');
-    if (url) name.href = url;
-    name.textContent = author;
-    credit.replaceChildren(['Código por ', 'Code by ', 'コード提供：'][locale()], name);
+    credit.hidden = !author;
+    credit.replaceChildren();
+    if (author) {
+      const name = document.createElement('a');
+      name.href = url;
+      name.textContent = author;
+      credit.append(['Código por ', 'Code by ', 'コード提供：'][locale()], name);
+    }
     status.textContent = '';
   }
   region.addEventListener('change',renderCode);
